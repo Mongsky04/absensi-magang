@@ -7,12 +7,15 @@ import axios from "axios";
 const getBaseURL = () => {
   if (typeof window !== "undefined") {
     // Client-side: use relative path or detect from window.location
-    const isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const isDev = window.location.hostname === "localhost" || 
+                  window.location.hostname === "127.0.0.1" ||
+                  window.location.hostname === "10.121.20.89";
+    
     if (isDev) {
       return "http://localhost:5000/api";
     } else {
-      // Production: use the same origin as the frontend
-      return `${window.location.origin}/api`;
+      // Production: use Render backend URL
+      return "https://absensi-magang.onrender.com/api";
     }
   }
   // Server-side (shouldn't happen in client app)
