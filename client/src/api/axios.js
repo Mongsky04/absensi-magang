@@ -6,20 +6,28 @@ import axios from "axios";
 // Determine base URL based on environment
 const getBaseURL = () => {
   if (typeof window !== "undefined") {
-    // Client-side: use relative path or detect from window.location
+    // Check if we're in development environment
+    // For local testing with Render backend, use Render URL
     const isDev = window.location.hostname === "localhost" || 
                   window.location.hostname === "127.0.0.1" ||
                   window.location.hostname === "10.121.20.89";
     
-    if (isDev) {
+    // If localhost and you have local backend running, change this to:
+    // return "http://localhost:5000/api";
+    // Otherwise, always use Render backend
+    if (isDev && window.location.port === "5173") {
+      // Vite dev server port - use Render backend
+      return "https://absensi-magang.onrender.com/api";
+    } else if (isDev) {
+      // Other dev environments
       return "http://localhost:5000/api";
     } else {
       // Production: use Render backend URL
       return "https://absensi-magang.onrender.com/api";
     }
   }
-  // Server-side (shouldn't happen in client app)
-  return "http://localhost:5000/api";
+  // Default fallback
+  return "https://absensi-magang.onrender.com/api";
 };
 
 const api = axios.create({
