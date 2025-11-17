@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 200 120">
+  <rect width="200" height="120" fill="#f59e0b" rx="8"/>
+  <text x="100" y="48" font-size="18" text-anchor="middle" fill="#7c2d12" font-family="Arial, sans-serif">Selfie Check-In</text>
+  <text x="100" y="78" font-size="16" text-anchor="middle" fill="#fffbeb" font-family="Arial, sans-serif">2025-11-06</text>
+</svg>
