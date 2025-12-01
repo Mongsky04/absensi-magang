@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - Sistem Absensi Magang</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 50%, #1e293b 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #0d9488, #0f766e);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    .logo-text h1 {
+      font-size: 1.8rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.25rem;
+    }
+    
+    .logo-text p {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+    }
+    
+    .header h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      font-weight: 400;
+    }
+    
+    .status {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .status::before {
+      content: "●";
+      color: #4ade80;
+      margin-right: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .content {
+      padding: 2rem;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-card {
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid #0d9488;
+    }
+    
+    .info-card h3 {
+      color: #0d9488;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-card p {
+      color: #475569;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .section h2 {
+      color: #0f766e;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #0d9488;
+    }
+    
+    .endpoint {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .endpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .method {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .method.get { background: #dbeafe; color: #1e40af; }
+    .method.post { background: #dcfce7; color: #166534; }
+    .method.put { background: #fef3c7; color: #92400e; }
+    .method.delete { background: #fee2e2; color: #991b1b; }
+    
+    .endpoint-path {
+      font-family: 'Courier New', monospace;
+      color: #475569;
+      font-size: 1rem;
+    }
+    
+    .endpoint-desc {
+      color: #64748b;
+      margin-bottom: 1rem;
+    }
+    
+    .params {
+      margin-top: 1rem;
+    }
+    
+    .params h4 {
+      color: #475569;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .param-list {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+      padding: 0.75rem;
+    }
+    
+    .param-item {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: #334155;
+      padding: 0.25rem 0;
+    }
+    
+    .param-name {
+      color: #0d9488;
+      font-weight: 600;
+    }
+    
+    .param-type {
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    .auth-required {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+    
+    .footer {
+      background: #f8fafc;
+      padding: 2rem;
+      text-align: center;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .footer a {
+      color: #0d9488;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    code {
+      background: #f1f5f9;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">J</div>
+        <div class="logo-text">
+          <h1>JASAMARGA</h1>
+          <p>JALANLAYANG CIKAMPEK</p>
+        </div>
+      </div>
+      <h2>API Documentation - Sistem Absensi Magang</h2>
+      <div class="status">API Server Online</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Info Cards -->
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Base URL</h3>
+          <p id="base-url">Loading...</p>
+        </div>
+        <div class="info-card">
+          <h3>Version</h3>
+          <p>v1.0.0</p>
+        </div>
+        <div class="info-card">
+          <h3>Environment</h3>
+          <p id="env">Production</p>
+        </div>
+        <div class="info-card">
+          <h3>Database</h3>
+          <p>MongoDB</p>
+        </div>
+      </div>
+
+      <!-- Authentication Section -->
+      <div class="section">
+        <h2>🔐 Authentication</h2>
+        
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/auth/login</span>
+          </div>
+          <p class="endpoint-desc">Login user dan mendapatkan JWT token</p>
+          <div class="params">
+            <h4>Request Body:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">email</span> <span class="param-type">(string, required)</span> - Email user</div>
+              <div class="param-item"><span class="param-name">password</span> <span class="param-type">(string, required)</span> - Password user</div>
+            </div>
+          </div>
+          <div class="params">
+            <h4>Response:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">token</span> - JWT token untuk autentikasi</div>
+              <div class="param-item"><span class="param-name">user</span> - Data user (nama, email, role, dll)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/auth/register</span>
+          </div>
+          <p class="endpoint-desc">Register user baru (disabled - hanya admin yang bisa membuat user)</p>
+        </div>
+      </div>
+
+      <!-- User Management Section -->
+      <div class="section">
+        <h2>👥 User Management</h2>
+        
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/users/profile</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan profil user yang sedang login</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+          <div class="params">
+            <h4>Headers:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">Authorization</span> <span class="param-type">(string, required)</span> - Bearer {token}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method put">PUT</span>
+            <span class="endpoint-path">/api/users/profile</span>
+          </div>
+          <p class="endpoint-desc">Update profil user</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+          <div class="params">
+            <h4>Request Body:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">foto</span> <span class="param-type">(string)</span> - URL foto profil</div>
+              <div class="param-item"><span class="param-name">jabatan</span> <span class="param-type">(string)</span> - Jabatan user</div>
+              <div class="param-item"><span class="param-name">perusahaan</span> <span class="param-type">(string, admin only)</span> - Nama perusahaan</div>
+              <div class="param-item"><span class="param-name">mentorId</span> <span class="param-type">(string, admin only)</span> - ID mentor</div>
+              <div class="param-item"><span class="param-name">kampus</span> <span class="param-type">(string, admin only)</span> - Nama kampus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/users/all</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan semua user (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/users/mentors</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan daftar mentor</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/users/create</span>
+          </div>
+          <p class="endpoint-desc">Membuat user baru (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+          <div class="params">
+            <h4>Request Body:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">nama</span> <span class="param-type">(string, required)</span> - Nama lengkap</div>
+              <div class="param-item"><span class="param-name">email</span> <span class="param-type">(string, required)</span> - Email user</div>
+              <div class="param-item"><span class="param-name">password</span> <span class="param-type">(string, required)</span> - Password user</div>
+              <div class="param-item"><span class="param-name">role</span> <span class="param-type">(string)</span> - "user" atau "admin"</div>
+              <div class="param-item"><span class="param-name">perusahaan</span> <span class="param-type">(string)</span> - Nama perusahaan</div>
+              <div class="param-item"><span class="param-name">jabatan</span> <span class="param-type">(string)</span> - Jabatan</div>
+              <div class="param-item"><span class="param-name">kampus</span> <span class="param-type">(string)</span> - Nama kampus</div>
+              <div class="param-item"><span class="param-name">isMentor</span> <span class="param-type">(boolean)</span> - Apakah user adalah mentor</div>
+              <div class="param-item"><span class="param-name">mentorId</span> <span class="param-type">(string)</span> - ID mentor (jika bukan mentor)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method put">PUT</span>
+            <span class="endpoint-path">/api/users/:id</span>
+          </div>
+          <p class="endpoint-desc">Update user (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method delete">DELETE</span>
+            <span class="endpoint-path">/api/users/:id</span>
+          </div>
+          <p class="endpoint-desc">Hapus user (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+        </div>
+      </div>
+
+      <!-- Absensi Section -->
+      <div class="section">
+        <h2>📋 Absensi</h2>
+        
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/absensi/masuk</span>
+          </div>
+          <p class="endpoint-desc">Check-in absensi (jam 06:00 - 17:00)</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+          <div class="params">
+            <h4>Request Body (multipart/form-data):</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">foto</span> <span class="param-type">(file, required)</span> - Foto selfie check-in</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/absensi/pulang</span>
+          </div>
+          <p class="endpoint-desc">Check-out absensi (setelah jam 17:00)</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+          <div class="params">
+            <h4>Request Body (multipart/form-data):</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">foto</span> <span class="param-type">(file, required)</span> - Foto selfie check-out</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/absensi/all</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan semua data absensi (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/absensi/user/:userId</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan absensi user tertentu</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+        </div>
+      </div>
+
+      <!-- Laporan Absen Section -->
+      <div class="section">
+        <h2>📝 Laporan Ketidakhadiran</h2>
+        
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method post">POST</span>
+            <span class="endpoint-path">/api/absensi/lapor</span>
+          </div>
+          <p class="endpoint-desc">Submit laporan izin/sakit/lupa absen</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+          <div class="params">
+            <h4>Request Body (multipart/form-data):</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">tanggal</span> <span class="param-type">(date, required)</span> - Tanggal ketidakhadiran</div>
+              <div class="param-item"><span class="param-name">jenis</span> <span class="param-type">(string, required)</span> - "izin", "sakit", atau "lupa"</div>
+              <div class="param-item"><span class="param-name">keterangan</span> <span class="param-type">(string, required)</span> - Alasan detail</div>
+              <div class="param-item"><span class="param-name">bukti</span> <span class="param-type">(file, optional)</span> - Bukti (surat dokter, dll)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/absensi/laporan</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan laporan user yang sedang login</p>
+          <span class="auth-required">🔒 Requires Authentication</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method get">GET</span>
+            <span class="endpoint-path">/api/absensi/laporan/all</span>
+          </div>
+          <p class="endpoint-desc">Mendapatkan semua laporan (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method put">PUT</span>
+            <span class="endpoint-path">/api/absensi/laporan/:id</span>
+          </div>
+          <p class="endpoint-desc">Approve/reject laporan (admin only)</p>
+          <span class="auth-required">🔒 Requires Admin</span>
+          <div class="params">
+            <h4>Request Body:</h4>
+            <div class="param-list">
+              <div class="param-item"><span class="param-name">status</span> <span class="param-type">(string, required)</span> - "approved" atau "rejected"</div>
+              <div class="param-item"><span class="param-name">responseNote</span> <span class="param-type">(string, optional)</span> - Catatan dari admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Info Section -->
+      <div class="section">
+        <h2>⚙️ Technical Information</h2>
+        
+        <div class="endpoint">
+          <h3 style="color: #475569; font-size: 1rem; margin-bottom: 0.5rem;">Authentication</h3>
+          <p style="color: #64748b; margin-bottom: 1rem;">
+            API menggunakan JWT (JSON Web Token) untuk autentikasi. Token dikirim melalui header <code>Authorization: Bearer {token}</code>
+          </p>
+        </div>
+
+        <div class="endpoint">
+          <h3 style="color: #475569; font-size: 1rem; margin-bottom: 0.5rem;">CORS</h3>
+          <p style="color: #64748b; margin-bottom: 1rem;">
+            CORS dikonfigurasi untuk origin: localhost:5173-5177, localhost:3000, localhost:5000, dan 10.121.20.89:5173
+          </p>
+        </div>
+
+        <div class="endpoint">
+          <h3 style="color: #475569; font-size: 1rem; margin-bottom: 0.5rem;">File Upload</h3>
+          <p style="color: #64748b; margin-bottom: 1rem;">
+            Upload menggunakan Cloudinary. Folders: <code>absensi-presensi</code> untuk foto check-in/out, <code>absensi-laporan</code> untuk bukti laporan
+          </p>
+        </div>
+
+        <div class="endpoint">
+          <h3 style="color: #475569; font-size: 1rem; margin-bottom: 0.5rem;">Time Restrictions</h3>
+          <p style="color: #64748b; margin-bottom: 1rem;">
+            Check-in: 06:00 - 17:00 WIB<br>
+            Check-out: Setelah 17:00 WIB<br>
+            Timezone: Asia/Jakarta
+          </p>
+        </div>
+
+        <div class="endpoint">
+          <h3 style="color: #475569; font-size: 1rem; margin-bottom: 0.5rem;">Response Format</h3>
+          <p style="color: #64748b; margin-bottom: 0.5rem;">
+            Semua response menggunakan format JSON dengan struktur:
+          </p>
+          <div class="param-list">
+            <div class="param-item"><span class="param-name">message</span> - Pesan status</div>
+            <div class="param-item"><span class="param-name">data</span> - Data response (jika ada)</div>
+            <div class="param-item"><span class="param-name">error</span> - Error message (jika error)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2025 PT Jasamarga Jalanlayang Cikampek. All rights reserved.</p>
+      <p style="margin-top: 0.5rem;">
+        Butuh bantuan? <a href="https://wa.me/6281234567890?text=Halo%20admin,%20saya%20butuh%20bantuan%20API" target="_blank">Hubungi Admin</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Set base URL dynamically
+    const baseUrl = window.location.origin;
+    document.getElementById('base-url').textContent = baseUrl;
+    
+    // Set environment
+    const isLocalhost = baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1');
+    document.getElementById('env').textContent = isLocalhost ? 'Development' : 'Production';
+  </script>
+</body>
+</html>
