@@ -74,7 +74,7 @@ export default function Navbar({ user, notifications = [] }) {
                 </button>
 
                 {notifOpen && (
-                  <div className="absolute right-0 sm:right-0 left-0 sm:left-auto mt-2 mx-4 sm:mx-0 sm:w-80 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50">
                     <div className="px-4 py-2 border-b border-slate-100">
                       <h3 className="font-semibold text-slate-800">Notifikasi</h3>
                     </div>
