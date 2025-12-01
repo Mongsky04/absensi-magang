@@ -182,10 +182,10 @@ export default function Admin() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-slate-800">Admin Panel</h1>
-            <p className="text-slate-500">Kelola pengguna dan laporan sistem absensi</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-800">Admin Panel</h1>
+            <p className="text-sm sm:text-base text-slate-500">Kelola pengguna dan laporan sistem absensi</p>
           </div>
           {activeTab === "users" && (
             <button
@@ -277,13 +277,13 @@ export default function Admin() {
               <table className="w-full">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200">
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Peserta</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Tanggal</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Jenis</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Keterangan</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Bukti</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Status</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-slate-600 uppercase">Aksi</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Peserta</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Tanggal</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Jenis</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Keterangan</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Bukti</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Status</th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-center text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">Aksi</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -296,7 +296,7 @@ export default function Admin() {
                   ) : (
                     laporan.map(item => (
                       <tr key={item._id} className="hover:bg-slate-50 transition">
-                        <td className="px-4 py-3">
+                        <td className="px-2 sm:px-4 py-2 sm:py-3">
                           <div>
                             <p className="font-medium text-slate-800">{item.userId?.nama || "-"}</p>
                             <p className="text-xs text-slate-500">{item.userId?.email || "-"}</p>
@@ -400,7 +400,7 @@ export default function Admin() {
             </div>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Form Panel */}
             {showForm && (
               <div className="lg:col-span-1">
@@ -416,9 +416,9 @@ export default function Admin() {
                     </button>
                   </div>
                   
-                  <form onSubmit={submitCreate} className="p-4 space-y-4">
+                  <form onSubmit={submitCreate} className="p-3 sm:p-4 space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Nama *</label>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Nama *</label>
                       <input
                         required
                         value={form.nama}
@@ -454,7 +454,7 @@ export default function Admin() {
                       />
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">Role</label>
                         <select

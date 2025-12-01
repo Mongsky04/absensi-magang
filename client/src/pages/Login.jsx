@@ -88,24 +88,24 @@ export default function Login() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-slate-50">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 bg-slate-50">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
-          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-6 sm:mb-8">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-lg">
               J
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-800 tracking-[0.15em]">JASAMARGA</h1>
-              <p className="text-xs text-slate-500 tracking-wider">JALANLAYANG CIKAMPEK</p>
+              <h1 className="text-lg sm:text-xl font-bold text-slate-800 tracking-[0.15em]">JASAMARGA</h1>
+              <p className="text-[10px] sm:text-xs text-slate-500 tracking-wider">JALANLAYANG CIKAMPEK</p>
             </div>
           </div>
 
           {/* Form Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Selamat Datang!</h2>
-              <p className="text-slate-500 mt-2">Masuk ke akun Anda untuk melanjutkan</p>
+          <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-800">Selamat Datang!</h2>
+              <p className="text-sm sm:text-base text-slate-500 mt-2">Masuk ke akun Anda untuk melanjutkan</p>
             </div>
 
             {/* Error Message */}

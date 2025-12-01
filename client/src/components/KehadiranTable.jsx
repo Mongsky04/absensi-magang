@@ -33,21 +33,21 @@ export default function KehadiranTable({ data }) {
     
     if (statusLower === "hadir") {
       return (
-        <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-teal-100 text-teal-700">
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium bg-teal-100 text-teal-700">
           Present
         </span>
       );
     }
     if (statusLower === "telat") {
       return (
-        <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-amber-100 text-amber-700">
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium bg-amber-100 text-amber-700">
           Telat
         </span>
       );
     }
     if (statusLower === "izin" || statusLower === "sakit") {
       return (
-        <span className="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-blue-100 text-blue-700">
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-xs font-medium bg-blue-100 text-blue-700">\n
           {status}
         </span>
       );
@@ -71,13 +71,13 @@ export default function KehadiranTable({ data }) {
         <table className="w-full">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-200">
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">No</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Tanggal</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Foto</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Check In</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Check Out</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Status</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Alasan</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">No</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Tanggal</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Foto</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Check In</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Check Out</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Status</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Alasan</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -90,13 +90,13 @@ export default function KehadiranTable({ data }) {
             ) : (
               paginatedData.map((row, idx) => (
                 <tr key={idx} className="hover:bg-slate-50 transition">
-                  <td className="px-4 py-3 text-sm text-slate-600">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-600">
                     {(currentPage - 1) * ITEMS_PER_PAGE + idx + 1}
                   </td>
-                  <td className="px-4 py-3 text-sm text-slate-800 font-medium">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-800 font-medium">
                     {formatDate(row.tanggal)}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3">
                     {row.foto ? (
                       <button
                         onClick={() => setPreview(row.foto)}
@@ -123,16 +123,16 @@ export default function KehadiranTable({ data }) {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-sm text-teal-600 font-medium">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-teal-600 font-medium">
                     {row.checkIn || "-"}
                   </td>
-                  <td className="px-4 py-3 text-sm text-slate-600">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-600">
                     {row.checkOut || "-"}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3">
                     {getStatusBadge(row.status)}
                   </td>
-                  <td className="px-4 py-3 text-sm text-slate-500">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-500">
                     {row.keterangan && row.keterangan !== "-" ? row.keterangan : "Tanpa Keterangan"}
                   </td>
                 </tr>

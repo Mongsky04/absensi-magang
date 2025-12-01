@@ -149,8 +149,8 @@ export default function Profile() {
           </div>
 
           {/* Basic Info Section */}
-          <div className="p-6 border-b border-slate-100">
-            <h3 className="font-semibold text-slate-800 mb-4">Informasi Dasar</h3>
+          <div className="p-4 sm:p-6 border-b border-slate-100">
+            <h3 className="font-semibold text-slate-800 mb-3 sm:mb-4">Informasi Dasar</h3>
             <div className="grid gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
@@ -184,8 +184,8 @@ export default function Profile() {
 
           {/* Company & Mentor Section - Only for User/Pemagang */}
           {user?.role !== "admin" && (
-            <div className="p-6 border-b border-slate-100">
-              <h3 className="font-semibold text-slate-800 mb-4">Informasi Magang</h3>
+            <div className="p-4 sm:p-6 border-b border-slate-100">
+              <h3 className="font-semibold text-slate-800 mb-3 sm:mb-4">Informasi Magang</h3>
               <div className="grid gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Perusahaan</label>

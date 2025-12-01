@@ -155,12 +155,12 @@ export default function LaporAbsen() {
     <div className="min-h-screen bg-linear-to-br from-teal-50 via-purple-50 to-pink-50">
       <Navbar user={user} />
 
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto px-4 py-6 sm:py-8">
         <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
           {/* Header */}
-          <div className="bg-linear-to-r from-teal-600 to-teal-500 p-6 text-white">
-            <h1 className="text-2xl font-bold flex items-center gap-2">
-              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="bg-linear-to-r from-teal-600 to-teal-500 p-4 sm:p-6 text-white">
+            <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               Lapor Ketidakhadiran
@@ -171,7 +171,7 @@ export default function LaporAbsen() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 sm:space-y-5">
             {/* Message */}
             {message && (
               <div

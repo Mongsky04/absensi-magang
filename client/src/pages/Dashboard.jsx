@@ -221,9 +221,9 @@ export default function Dashboard() {
             <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Left Column - Profile & Presensi */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-4 sm:space-y-6">
               <ProfileCard user={user} />
               <PresensiBox
                 todayRecord={todayRecord}
@@ -249,28 +249,28 @@ export default function Dashboard() {
             </div>
 
             {/* Right Column - Data Kehadiran */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
               {/* Filter Section */}
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 mb-6">
-                <div className="flex flex-wrap items-end gap-4">
-                  <div>
+              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-end gap-3 sm:gap-4">
+                  <div className="w-full sm:w-auto">
                     <label className="block text-sm font-medium text-slate-700 mb-1">Bulan</label>
                     <select
                       value={selectedMonth}
                       onChange={(e) => setSelectedMonth(Number(e.target.value))}
-                      className="w-40 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      className="w-full sm:w-40 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     >
                       {monthNames.map((m, i) => (
                         <option key={i + 1} value={i + 1}>{m}</option>
                       ))}
                     </select>
                   </div>
-                  <div>
+                  <div className="w-full sm:w-auto">
                     <label className="block text-sm font-medium text-slate-700 mb-1">Tahun</label>
                     <select
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(Number(e.target.value))}
-                      className="w-28 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                      className="w-full sm:w-28 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     >
                       {yearsOptions.map(y => (
                         <option key={y} value={y}>{y}</option>

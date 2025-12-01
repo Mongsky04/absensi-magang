@@ -236,18 +236,18 @@ export default function PresensiBox({ onSubmit, onPulang, todayRecord }) {
           </div>
         )}
         
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Check-in Button */}
           <button
             onClick={handleCheckIn}
             disabled={loading || hasCheckedIn}
-            className={`relative flex flex-col items-center justify-center p-4 rounded-xl border-2 transition ${
+            className={`relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl border-2 transition ${
               hasCheckedIn
                 ? "border-green-200 bg-green-50 cursor-not-allowed"
                 : "border-slate-200 hover:border-teal-300 hover:bg-teal-50 cursor-pointer"
             }`}
           >
-            <div className={`text-2xl ${hasCheckedIn ? "text-green-500" : "text-slate-400"}`}>
+            <div className={`text-xl sm:text-2xl ${hasCheckedIn ? "text-green-500" : "text-slate-400"}`}>
               {hasCheckedIn ? "✓" : "→"}
             </div>
             <span className={`text-sm font-medium mt-1 ${hasCheckedIn ? "text-green-600" : "text-slate-600"}`}>

@@ -95,11 +95,11 @@ export default function KehadiranSummary({ summary, allRows = [], user = null })
         <table className="w-full">
           <thead>
             <tr className="bg-slate-50 border-b border-slate-200">
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">No</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Bulan Tahun</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Jumlah Kehadiran</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Jumlah Ketidakhadiran</th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">Download Rekap</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">No</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Bulan</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Jumlah Kehadiran</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Jumlah Ketidakhadiran</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-[10px] sm:text-xs font-semibold text-slate-600 uppercase tracking-wider">Download Rekap</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -112,23 +112,23 @@ export default function KehadiranSummary({ summary, allRows = [], user = null })
             ) : (
               summary.map((row, idx) => (
                 <tr key={idx} className="hover:bg-slate-50 transition">
-                  <td className="px-4 py-3 text-sm text-slate-600">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-600">
                     {idx + 1}
                   </td>
-                  <td className="px-4 py-3 text-sm text-slate-800 font-medium">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-slate-800 font-medium">
                     {row.bulan || "-"}
                   </td>
-                  <td className="px-4 py-3 text-center">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
+                    <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium bg-green-100 text-green-700">
                       {row.hadir ?? 0}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-center">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-700">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
+                    <span className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium bg-red-100 text-red-700">
                       {row.tidakHadir ?? 0}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-center">
+                  <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => {
