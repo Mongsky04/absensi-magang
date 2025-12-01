@@ -10,7 +10,6 @@ export default function Navbar({ user, notifications = [] }) {
   const [open, setOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(Array.isArray(notifications) ? notifications.length : 0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const close = (e) => {
@@ -139,39 +138,8 @@ export default function Navbar({ user, notifications = [] }) {
                   </div>
                 )}
               </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
             </div>
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-100">
-              <Link to="/" className="block py-2 text-slate-600 hover:text-teal-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-                Dashboard
-              </Link>
-              <Link to="/profile" className="block py-2 text-slate-600 hover:text-teal-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-                Profil
-              </Link>
-              {user?.role === "admin" && (
-                <Link to="/admin" className="block py-2 text-slate-600 hover:text-teal-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-                  Admin Panel
-                </Link>
-              )}
-            </div>
-          )}
         </div>
       </nav>
     </>
