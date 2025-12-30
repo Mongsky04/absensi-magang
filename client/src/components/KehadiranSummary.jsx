@@ -140,7 +140,7 @@ export default function KehadiranSummary({ summary, allRows = [], user = null, l
                           onClick={() => {
                             if (hasPendingLaporan) return;
                             const data = buildMonthRows(row.monthKey);
-                            exportMonthToHtml(data, `rekap-${row.monthKey}`, user);
+                            exportMonthToHtml(data, `rekap-${row.monthKey}`, user, row, laporan);
                           }}
                           disabled={hasPendingLaporan}
                           className={`p-2 rounded-lg transition ${

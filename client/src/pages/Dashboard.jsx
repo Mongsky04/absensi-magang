@@ -13,6 +13,7 @@ import LaporanSection from "../components/LaporanSection";
 import AbsensiAPI from "../api/AbsensiApi";
 import UserAPI from "../api/UserAPI";
 import { setAuthToken } from "../api/axios";
+import { isWeekend, isNationalHoliday, isWorkingDay } from "../utils/HolidayConfig";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -108,10 +109,20 @@ export default function Dashboard() {
     });
 
     // Hitung dari tanggal 1 sampai lastDayToCount
+    // HANYA menghitung hari kerja (bukan weekend dan bukan libur nasional)
     let hadir = 0;
     let tidakHadir = 0;
 
     for (let day = 1; day <= lastDayToCount; day++) {
+      // Buat date object untuk hari ini
+      const currentDate = new Date(year, month - 1, day);
+      
+      // Skip jika weekend (Sabtu/Minggu) atau libur nasional
+      if (isWeekend(currentDate) || isNationalHoliday(currentDate)) {
+        continue; // Tidak dihitung sebagai hadir atau tidak hadir
+      }
+      
+      // Hanya hitung hari kerja
       const record = absensiMap.get(day);
       if (record && (record.status === "hadir" || record.status === "telat")) {
         hadir += 1;
